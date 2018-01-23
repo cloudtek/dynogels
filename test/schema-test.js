@@ -294,6 +294,23 @@ describe('schema', () => {
         }
       });
     });
+
+    it('should prototype model methods', () => {
+      const testMethod = () => 'test-method';
+      const anotherMethod = () => 'another-method';
+      const config = {
+        hashKey: 'foo',
+        methods: {
+          testMethod: testMethod,
+          anotherMethod: anotherMethod
+        }
+      };
+
+      const s = new Schema(config);
+
+      s.methods.testMethod.should.equal(testMethod)
+      s.methods.anotherMethod.should.equal(anotherMethod);
+    });
   });
 
   describe('#stringSet', () => {

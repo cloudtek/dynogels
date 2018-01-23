@@ -117,6 +117,24 @@ var BlogPost = dynogels.define('BlogPost', {
 });
 ```
 
+Methods can be attached to the model:
+
+```js
+var BlogPost = dynogels.define('BlogPost', {
+  hashKey : 'email',
+  rangeKey : ‘title’,
+  schema : {
+    email   : Joi.string().email(),
+    title   : Joi.string(),
+    content : Joi.binary(),
+    tags   : dynogels.types.stringSet(),
+  },
+  methods : {
+    preview : function() { return this.get('content').substring(0,200); }
+  }
+});
+```
+
 ### Create Tables for all defined models
 
 ```js

@@ -20,6 +20,9 @@ describe('item', () => {
       schema: {
         num: Joi.number(),
         name: Joi.string()
+      },
+      methods: {
+        testMethod: () => { return 'test-method-result' }
       }
     };
 
@@ -34,6 +37,12 @@ describe('item', () => {
     const stringified = JSON.stringify(item);
 
     stringified.should.equal(JSON.stringify(attrs));
+  });
+
+  it('custom methods should be callable', () => {
+    const item = new Item({}, table);
+
+    item.testMethod().should.equal('test-method-result')
   });
 
   describe('#save', () => {

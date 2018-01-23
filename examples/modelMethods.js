@@ -13,12 +13,13 @@ const Account = dynogels.define('example-model-methods-Account', {
     email: Joi.string(),
     name: Joi.string(),
     age: Joi.number(),
+  },
+  methods: {
+    sayHello: function () {
+      console.log(`Hello my name is ${this.get('name')} I\'m ${this.get('age')} years old`);
+    }
   }
 });
-
-Account.prototype.sayHello = function () {
-  console.log(`Hello my name is ${this.get('name')} I\'m ${this.get('age')} years old`);
-};
 
 Account.findByAgeRange = (low, high) => {
   Account.scan()
